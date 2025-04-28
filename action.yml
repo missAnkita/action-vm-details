@@ -1,0 +1,18 @@
+name: 'Get Runner details!'
+description: 'Composite Action to get VM (Runner) details!'
+
+runs:
+ using: 'composite'
+ steps:
+    - name: Get VM details
+      shell: bash
+      run: |
+        echo "VM Details:"
+        echo "-------------"
+        echo "Hostname: $(hostname)"
+        echo "Operating System: $(uname -s) $(uname -r) $(uname -m)"
+        echo "CPU Model: $(grep "model name" /proc/cpuinfo | head -n 1 | awk -F: '{print $2}' | xargs)"
+        echo "Total Memory: $(free -h | grep Mem | awk '{print $2}')"
+        echo "Disk Space:"
+        df -h | awk '$NF=="/"{printf "  Total: %s, Used: %s, Available: %s\n", $2, $3, $4}'
+        echo "IP Address: $(hostname -I)"
