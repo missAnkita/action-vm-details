@@ -1,5 +1,5 @@
-name: 'Get Runner details!'
-description: 'Composite Action to get VM (Runner) details!'
+name: 'Get Runner details'
+description: 'Composite Action to get VM (Runner) details'
 
 runs:
  using: 'composite'
